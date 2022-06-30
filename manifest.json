@@ -1,0 +1,13 @@
+{
+  "name": "Brainly Crack",
+  "version": "0.21",
+  "description": "O terror de Jean",
+  "content_scripts": [
+    {
+      "matches": ["https://brainly.com.br/tarefa/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "manifest_version": 3
+}
