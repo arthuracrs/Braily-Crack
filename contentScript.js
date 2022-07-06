@@ -11,19 +11,15 @@ class HtmlParser {
 }
 
 class GetAnswersUseCase {
-  htmlParser;
   pageProcessor;
   view;
 
-  constructor(htmlParser, pageProcessor, view) {
-    this.htmlParser = htmlParser
+  constructor(pageProcessor, view) {
     this.pageProcessor = pageProcessor
     this.view = view
   }
 
-  run(taskPageText) {
-    const newPage = this.htmlParser.parse(taskPageText)
-
+  run(newPage) {
     const logo = document.getElementsByClassName('sg-logo__image')[0]
 
     this.pageProcessor.run(newPage)
@@ -85,7 +81,7 @@ class TextToHTML extends HtmlParser {
   }
 }
 
-const getAnswersUseCase = new GetAnswersUseCase(new TextToHTML(), new RemoveAds(), new NewTab())
+const getAnswersUseCase = new GetAnswersUseCase(new RemoveAds(), new NewTab())
 
 const getTask = () => {
   const Http = new XMLHttpRequest();
@@ -94,7 +90,7 @@ const getTask = () => {
   Http.send();
 
   Http.onload = () => {
-    getAnswersUseCase.run(Http.responseText)
+    getAnswersUseCase.run(new TextToHTML().parse(Http.responseText))
   }
 }
 
