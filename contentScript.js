@@ -45,6 +45,8 @@ class RemoveAds extends PageProcessor {
       'brn-placeholder__animation',
       'js-react-below-answers',
       'js-react-nearest-questions-navigation',
+      'brn-ads-mobile-container',
+      'brn-ads-sticky-wrapper',
     ]
 
     for (let i = 0; i < classes.length; i++) {
